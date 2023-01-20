@@ -42,4 +42,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::delete('destroy/{m2}/{objektid}', [AdminController::class, 'destroy'])->name('destroy');
+
+Route::delete('destroybuilding/{id}/{objektid}', [AdminController::class, 'destroybuilding'])->name('destroybuilding');
+
 ?>

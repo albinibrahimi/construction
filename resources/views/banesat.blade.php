@@ -3,13 +3,20 @@
 @section('content')
 
 <h1 class="text-center mt-4 mb-5">{{$objekti->name}}</h1>
+@if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
     <table class="table  table-dark text-center align-middle">
   <thead>
     <tr>
       <th scope="col">Kati</th>
       <th scope="col">M2</th>
       <th scope="col">Statusi</th>
+      @auth
       <th scope="col">Opsioni</th>
+        @endauth
     </tr>
   </thead>
   <tbody>
@@ -24,7 +31,9 @@
       @else
       <td class="bg-danger">E shitur</td>
       @endif
+      @auth
       <td><a class="btn btn-primary" href="{{ route('edit', $banesa->id) }}">Ndërro statusin</a></td>
+        @endauth
       
     </tr>
        @endforeach

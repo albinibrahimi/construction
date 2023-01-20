@@ -30,6 +30,14 @@ class AdminController extends Controller
     public function destroy(Request $request)
     {
         $banesa = Banesa::where('m2', $request->m2)->where('objektid', $request->objektid)->delete();
-        return back();
+        return back()->with('success', 'Banesa '.$request->m2. 'm2 u fshi me sukses.');;
+    }
+
+    public function destroybuilding(Request $request)
+    {
+        $banesa = Banesa::where('objektid', $request->objektid)->delete();
+        $objekti = Objekt::where('id', $request->id)->delete();
+
+        return redirect('/admin');
     }
 }

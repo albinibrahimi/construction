@@ -4,6 +4,11 @@
     <div class="d-flex justify-content-center">
     <img src="/images/admin.png" width="200">
 </div>
+@if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
 <table class="table  table-dark text-center align-middle">
   <thead>
     <tr><th scope="col" colspan="3">Banesat për objektin: {{$objekt->name}}</th></tr>

@@ -36,8 +36,7 @@ class BanesaController extends Controller
 }
     
       
-        return redirect()->route('/')
-        ->with('success','Banesa u shtua me sukses');
+        return redirect()->route('editbuilding', [$id])->with('success', 'U shtua me sukses banesa ' .$input["m2"]. 'm2.');
     }
 
     public function edit($id)
@@ -56,7 +55,7 @@ class BanesaController extends Controller
         $banesa->statusi = $request->get('statusi');
         $banesa->save();
     
-        return redirect('/')->with('success', 'Stock updated.');
+        return redirect()->route('banesat', [$banesa->objektid])->with('success', 'Statusi u ndërrua me sukses.');
     }
     
 }
