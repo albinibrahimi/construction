@@ -12,13 +12,30 @@ class BanesaController extends Controller
     {
         $banesat = Banesa::select('id','kati','m2','statusi')->where('objektid', '=', $id)->orderBy('kati')->paginate(10);
         $objekti = Objekt::find($id);
+
+        if($objekti != NULL && $banesat!= NULL)
+        {
             return view('banesat', compact('banesat','objekti'));
+        }
+        else
+        {
+            return redirect('/');
+        }
+            
     }
 
     public function create($id)
     {
         $objekti = Objekt::find($id);
-        return view('createbanesa', compact('objekti'));
+
+        if($objekti != NULL)
+        {
+            return view('createbanesa', compact('objekti'));
+        }
+        else
+        {
+            return redirect('/admin');
+        }
     }
 
     public function store(Request $request, $id)
@@ -36,13 +53,20 @@ class BanesaController extends Controller
 }
     
       
-        return redirect()->route('editbuilding', [$id])->with('success', 'U shtua me sukses banesa ' .$input["m2"]. 'm2.');
+        return redirect()->route('admin', [$id])->with('success', 'U shtua me sukses banesa ' .$input["m2"]. 'm2.');
     }
 
     public function edit($id)
     {
         $banesa = Banesa::find($id);
-        return view('editbanesa', compact('banesa'));
+        if($banesa != NULL)
+        {
+            return view('editbanesa', compact('banesa'));
+        }
+        else
+        {
+            return redirect('/');
+        }
     }
 
     public function update(Request $request, $id)

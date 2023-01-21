@@ -15,38 +15,36 @@ use App\Http\Controllers\AdminController;
 |
 */
 
-Route::get('/', [ObjektController::class, 'index'])->name('index');;
+Route::get('/', [ObjektController::class, 'index'])->name('index');
 
 Route::get('/banesat/{id}', [BanesaController::class, 'index'])->name('banesat');
 
-Route::get('/create', [ObjektController::class, 'create'])->name('create');
+Route::get('/create', [ObjektController::class, 'create'])->name('create')->middleware('auth','verified');
 
-Route::post('store', [ObjektController::class, 'store'])->name('store');
+Route::post('store', [ObjektController::class, 'store'])->name('store')->middleware('auth','verified');
 
-Route::get('createbanesa/{id}', [BanesaController::class, 'create'])->name('createbanesa');
+Route::get('createbanesa/{id}', [BanesaController::class, 'create'])->name('createbanesa')->middleware('auth','verified');
 
-Route::post('storebanesa/{id}', [BanesaController::class, 'store'])->name('storebanesa');
+Route::post('storebanesa/{id}', [BanesaController::class, 'store'])->name('storebanesa')->middleware('auth','verified');
 
-Route::get('edit/{id}',[BanesaController::class, 'edit'])->name('edit');
+Route::get('edit/{id}',[BanesaController::class, 'edit'])->name('edit')->middleware('auth','verified');
 
-Route::patch('update/{id}',[BanesaController::class, 'update'])->name('update');
+Route::patch('update/{id}',[BanesaController::class, 'update'])->name('update')->middleware('auth','verified');
 
-Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+Route::get('/admin', [AdminController::class, 'index'])->name('admin')->middleware('auth','verified');
 
-Route::get('apartments/{id}', [AdminController::class, 'showapartments'])->name('apartments');
+Route::get('apartments/{id}', [AdminController::class, 'showapartments'])->name('apartments')->middleware('auth','verified');
 
-Route::get('editbuilding/{id}', [AdminController::class, 'editbuilding'])->name('editbuilding');
+Route::get('editbuilding/{id}', [AdminController::class, 'editbuilding'])->name('editbuilding')->middleware('auth','verified');
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::delete('destroy/{m2}/{objektid}', [AdminController::class, 'destroy'])->name('destroy')->middleware('auth','verified');
 
-Route::delete('destroy/{m2}/{objektid}', [AdminController::class, 'destroy'])->name('destroy');
+Route::delete('destroybuilding/{id}/{objektid}', [AdminController::class, 'destroybuilding'])->name('destroybuilding')->middleware('auth','verified');
 
-Route::delete('destroybuilding/{id}/{objektid}', [AdminController::class, 'destroybuilding'])->name('destroybuilding');
+Route::get('editapartment/{m2}/{objektid}',[AdminController::class, 'editapartment'])->name('editapartment')->middleware('auth','verified');
 
-Route::get('editapartment/{m2}/{objektid}',[AdminController::class, 'editapartment'])->name('editapartment');
-
-Route::patch('updateapartment/{m2}/{objektid}',[AdminController::class, 'updateapartment'])->name('updateapartment');
+Route::patch('updateapartment/{m2}/{objektid}',[AdminController::class, 'updateapartment'])->name('updateapartment')->middleware('auth','verified');
 
 ?>

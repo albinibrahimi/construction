@@ -12,27 +12,23 @@
 <table class="table  table-dark text-center align-middle">
   <thead>
     <tr>
-      <th scope="col">Objekti: {{$objekt->name}}</th>
+      <th scope="col" colspan="3">Objekti: {{$objekt->name}}</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>
+    <tr class="d-flex justify-content-center w-100">
+      <td class="w-100">
         <a class="btn btn-success" href="{{ route('createbanesa', $objekt->id) }}">Shto banesë</a>
+</td>
+<td class="w-100">
         <a class="btn btn-primary" href="{{ route('apartments', $objekt->id) }}">Listo banesat</a>
-        <a href="/" 
-                    class="btn btn-danger"
-                   onclick="event.preventDefault();
-                    document.getElementById(
-                      'delete-form').submit();">
-                 Fshij Objektin 
-                </a>
-            </td>
-        <form id="delete-form" + action="{{route('destroybuilding', ['id' => $objekt->id, 'objektid' => $objekt->id])}}"
-                  method="post">
+</td>
+<td class="w-100">
+        <form method="post" action="{{route('destroybuilding', ['id' => $objekt->id, 'objektid' => $objekt->id])}}">
+                  <button onclick="return confirm('A jeni i sigurtë se dëshironi të fshini objektin {{$objekt->name}} ?' )" type="submit" class="btn btn-danger">Delete</button>
                 @csrf @method('DELETE')
             </form>
-        
+            </td>
     </td>
     </tr>
   </tbody>

@@ -39,8 +39,7 @@ class ObjektController extends Controller
      
         Objekt::create($input);
       
-        return redirect()->route('create')
-        ->with('success','Objekti u shtua me sukses');
+        return redirect()->route('admin')->with('success', 'Objekti u shtua me sukses');
     }
 
     public function admin()

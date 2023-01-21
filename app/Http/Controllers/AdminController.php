@@ -17,14 +17,31 @@ class AdminController extends Controller
     public function editbuilding($id)
     {
         $objekt = Objekt::find($id);
+
+            if($objekt !=NULL)
+        {
             return view('admin.editbuilding', compact('objekt'));
+        }
+        else
+        {
+            return redirect('/admin');
+        }
     }
 
     public function showapartments($id)
     {
         $objekt = Objekt::find($id);
         $apartments = Banesa::select('m2')->where('objektid', '=', $id)->distinct('m2')->get();
+
+        if($apartments != NULL && $objekt !=NULL)
+        {
             return view('admin.apartments', compact('apartments','objekt'));
+        }
+        else
+        {
+            return redirect('/admin');
+        }
+            
     }
 
     public function destroy(Request $request, $m2, $objektid)
@@ -45,19 +62,35 @@ class AdminController extends Controller
     {
         $metrat = $m2;
         $objekt = Objekt::find($objektid);
+
+        if($metrat != NULL && $objekt !=NULL)
+        {
             return view('admin.editapartment', compact('metrat','objekt'));
+        }
+        else
+        {
+            return redirect('/admin');
+        }
+
     }
 
     public function updateapartment(Request $request, $m2, $objektid)
     {
         $banesas = Banesa::where('m2', $m2)->where('objektid', $objektid)->get();
-
-        foreach($banesas as $banesa)
+        if($banesas != NULL)
+        {
+            foreach($banesas as $banesa)
     {
         $banesa->m2 = $request->get('m2');
         $banesa->save();
     }       
     
-        return redirect()->route('apartments', [$objektid])->with('success', 'Madhësi e banesës u ndërrua me sukses.');
+        return redirect()->route('apartments', [$objektid])->with('success', 'Madhësia e banesës u ndërrua me sukses.');
+        }
+        else
+        {
+            return redirect('/admin');
+        }
+        
     }
 }
