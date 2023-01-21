@@ -22,17 +22,10 @@
     <tr>
       <td>{{$apartment->m2}}m2</td>
       <td>
-        <a class="btn btn-success" href="">Ndrysho madhësinë</a>
-        <td><a href="/" 
-                    class="btn btn-danger"
-                   onclick="event.preventDefault();
-                    document.getElementById(
-                      'delete-form').submit();">
-                 Delete 
-                </a>
-            </td>
-        <form id="delete-form" + action="{{route('destroy', ['m2' => $apartment->m2, 'objektid' => $objekt->id])}}"
-                  method="post">
+        <a class="btn btn-success" href="{{route('editapartment', ['m2' => $apartment->m2, 'objektid' => $objekt->id])}}">Ndrysho madhësinë</a>
+        <td>
+        <form method="post" action="{{route('destroy', ['m2' => $apartment->m2, 'objektid' => $objekt->id])}}">
+                  <button onclick="return confirm('A jeni i sigurtë se doni të fshini banesën me madhësi {{$apartment->m2}}m2 ?' )" type="submit" class="btn btn-danger">Delete</button>
                 @csrf @method('DELETE')
             </form>
         

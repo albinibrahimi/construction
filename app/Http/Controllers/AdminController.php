@@ -27,10 +27,10 @@ class AdminController extends Controller
             return view('admin.apartments', compact('apartments','objekt'));
     }
 
-    public function destroy(Request $request)
+    public function destroy(Request $request, $m2, $objektid)
     {
-        $banesa = Banesa::where('m2', $request->m2)->where('objektid', $request->objektid)->delete();
-        return back()->with('success', 'Banesa '.$request->m2. 'm2 u fshi me sukses.');;
+        $banesa = Banesa::where('m2', $m2)->where('objektid', $objektid)->delete();
+        return back()->with('success', 'Banesa '.$m2. 'm2 u fshi me sukses.');;
     }
 
     public function destroybuilding(Request $request)
@@ -39,5 +39,25 @@ class AdminController extends Controller
         $objekti = Objekt::where('id', $request->id)->delete();
 
         return redirect('/admin');
+    }
+
+    public function editapartment($m2,$objektid)
+    {
+        $metrat = $m2;
+        $objekt = Objekt::find($objektid);
+            return view('admin.editapartment', compact('metrat','objekt'));
+    }
+
+    public function updateapartment(Request $request, $m2, $objektid)
+    {
+        $banesas = Banesa::where('m2', $m2)->where('objektid', $objektid)->get();
+
+        foreach($banesas as $banesa)
+    {
+        $banesa->m2 = $request->get('m2');
+        $banesa->save();
+    }       
+    
+        return redirect()->route('apartments', [$objektid])->with('success', 'Madhësi e banesës u ndërrua me sukses.');
     }
 }

@@ -45,4 +45,8 @@ Route::delete('destroy/{m2}/{objektid}', [AdminController::class, 'destroy'])->n
 
 Route::delete('destroybuilding/{id}/{objektid}', [AdminController::class, 'destroybuilding'])->name('destroybuilding');
 
+Route::get('editapartment/{m2}/{objektid}',[AdminController::class, 'editapartment'])->name('editapartment');
+
+Route::patch('updateapartment/{m2}/{objektid}',[AdminController::class, 'updateapartment'])->name('updateapartment');
+
 ?>
