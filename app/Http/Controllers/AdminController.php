@@ -77,6 +77,13 @@ class AdminController extends Controller
     public function updateapartment(Request $request, $m2, $objektid)
     {
         $banesas = Banesa::where('m2', $m2)->where('objektid', $objektid)->get();
+
+        $request->validate([
+            'm2' => 'required|numeric'
+        ],[
+            'm2.required' => 'M2 janë të domosdoshme.',
+            'm2.numeric' => 'M2 mund të jenë vetëm numra.',
+        ]);
         if($banesas != NULL)
         {
             foreach($banesas as $banesa)

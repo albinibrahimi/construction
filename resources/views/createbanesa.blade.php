@@ -4,8 +4,9 @@
     <div class="row">  
     <h2 class="text-center mt-4 mb-3">Shto banesën për objektin: {{$objekti->name}}</h2>
     </div>
-@if (count($errors) > 0)
+    @if ($errors->any())
     <div class="alert alert-danger">
+        <strong>Whoops!</strong> Ka disa probleme me inputin tuaj.<br><br>
         <ul>
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>

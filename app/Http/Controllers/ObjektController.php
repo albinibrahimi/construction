@@ -22,7 +22,7 @@ class ObjektController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:204800',
         ],[
             'name.required' => 'Emri është i domosdoshëm.',
             'image.required' => 'Foto është e domosdoshme.',

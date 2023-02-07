@@ -10,6 +10,6 @@ class Banesa extends Model
     use HasFactory;
 
     protected $fillable = [
-        'm2', 'objektid', 'kati', 'statusi'
+        'm2', 'objektid', 'kati', 'statusi', 'description'
     ];
 }

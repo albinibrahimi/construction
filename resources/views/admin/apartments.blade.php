@@ -25,7 +25,7 @@
         <a class="btn btn-success" href="{{route('editapartment', ['m2' => $apartment->m2, 'objektid' => $objekt->id])}}">Ndrysho madhësinë</a>
         <td>
         <form method="post" action="{{route('destroy', ['m2' => $apartment->m2, 'objektid' => $objekt->id])}}">
-                  <button onclick="return confirm('A jeni i sigurtë se dëshironi të fshini banesën me madhësi {{$apartment->m2}}m2 ?' )" type="submit" class="btn btn-danger">Delete</button>
+                  <button onclick="return confirm('A jeni i sigurtë se dëshironi të fshini banesën me madhësi {{$apartment->m2}}m2 ?' )" type="submit" class="btn btn-danger">Fshije banesën</button>
                 @csrf @method('DELETE')
             </form>
         

@@ -31,6 +31,12 @@ Route::get('edit/{id}',[BanesaController::class, 'edit'])->name('edit')->middlew
 
 Route::patch('update/{id}',[BanesaController::class, 'update'])->name('update')->middleware('auth','verified');
 
+Route::get('editdescription/{id}',[BanesaController::class, 'editdescription'])->name('editdescription')->middleware('auth','verified');
+
+Route::get('readdescription/{id}',[BanesaController::class, 'readdescription'])->name('readdescription')->middleware('auth','verified');
+
+Route::patch('updatedescription/{id}',[BanesaController::class, 'updatedescription'])->name('updatedescription')->middleware('auth','verified');
+
 Route::get('/admin', [AdminController::class, 'index'])->name('admin')->middleware('auth','verified');
 
 Route::get('apartments/{id}', [AdminController::class, 'showapartments'])->name('apartments')->middleware('auth','verified');

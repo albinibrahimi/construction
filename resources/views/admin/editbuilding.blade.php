@@ -25,7 +25,7 @@
 </td>
 <td class="w-100">
         <form method="post" action="{{route('destroybuilding', ['id' => $objekt->id, 'objektid' => $objekt->id])}}">
-                  <button onclick="return confirm('A jeni i sigurtë se dëshironi të fshini objektin {{$objekt->name}} ?' )" type="submit" class="btn btn-danger">Delete</button>
+                  <button onclick="return confirm('A jeni i sigurtë se dëshironi të fshini objektin {{$objekt->name}} ?' )" type="submit" class="btn btn-danger">Fshij objektin</button>
                 @csrf @method('DELETE')
             </form>
             </td>
